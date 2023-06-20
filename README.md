@@ -16,4 +16,4 @@ In the code it will run accessibilty tests on markdown.org, update some namespac
 
 ```var documentLinks = xDoc.XPathSelectElements("/sm:urlset/sm:url/sm:loc", nsMgr);```
 
-```var baseOutputDirectory = @"C:\AccessibilityReport";'''
+```var baseOutputDirectory = @"C:\AccessibilityReport";```
