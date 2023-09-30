@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parameters>
+    <Parameter>
+        <ProjectName></ProjectName>
+    </Parameter>
+    <Parameter>
+        <UserName></UserName>
+    </Parameter>
+    <Parameter>
+        <PATToken></PATToken>
+    </Parameter>
+</Parameters>
