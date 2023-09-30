@@ -8,7 +8,7 @@ using System.Xml;
 Dictionary<string, string> fileParameters = new Dictionary<string, string>();
 fileParameters = getParameters();
 var credentials = new VssBasicCredential(fileParameters["UserName"], fileParameters["PATToken"]);
-var connection = new VssConnection(new Uri("https://dev.azure.com/imeta-standardconfig/"), credentials);
+var connection = new VssConnection(new Uri("<Url goes here>"), credentials);
 
 using var projectClient = await connection.GetClientAsync<ProjectHttpClient>();
 using var buildClient = await connection.GetClientAsync<BuildHttpClient>();
