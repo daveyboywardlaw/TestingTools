@@ -8,25 +8,19 @@ using System.Xml;
 Dictionary<string, string> fileParameters = new Dictionary<string, string>();
 fileParameters = getParameters();
 var credentials = new VssBasicCredential(fileParameters["UserName"], fileParameters["PATToken"]);
-var connection = new VssConnection(new Uri("https://dev.azure.com/imeta-standardconfig/"), credentials);
+var connection = new VssConnection(new Uri(fileParameters["OrgUrl"]), credentials);
 
 using var projectClient = await connection.GetClientAsync<ProjectHttpClient>();
 using var buildClient = await connection.GetClientAsync<BuildHttpClient>();
 using var testClient = await connection.GetClientAsync<TestManagementHttpClient>();
 
 var project = await projectClient.GetProject(fileParameters["ProjectName"]);
-var test = buildClient.GetBuildsAsync(fileParameters["ProjectName"], top: 10).Result;
-Console.WriteLine(test.ToString());
-foreach (var bob in test)
-{
-    Console.WriteLine(bob.BuildNumber + "  " + bob.StartTime + "  " + bob.FinishTime);
-    
-}
+var builds = buildClient.GetBuildsAsync(fileParameters["ProjectName"], top: 10).Result;
 var testCases = new List<TestCaseResult>();
 var aggregatedTestResults = @"C:\Temp\AggregatedIndividualTests.txt";
 var individualTestResults = @"C:\Temp\IndividualTests.txt";
 
-foreach (var bd in test)
+foreach (var bd in builds)
 {
     var runId = await testClient.QueryTestRunsAsync2(project.Id, bd.FinishTime.Value.AddHours(-12),
         bd.FinishTime.Value.AddHours(12), buildIds: new[] { bd.Id });
@@ -68,11 +62,14 @@ Dictionary<String, String> getParameters()
     
     foreach (XmlNode xmlNode in nodeList)
     {
+        if (xmlNode.FirstChild.Name == "OrgUrl")
+        {
+            parameters.Add("OrgUrl", xmlNode.FirstChild.InnerText);
+        }
         if (xmlNode.FirstChild.Name == "ProjectName")
         {
             parameters.Add("ProjectName", xmlNode.FirstChild.InnerText);
         }
-
         if (xmlNode.FirstChild.Name == "UserName")
         {
             parameters.Add("UserName", xmlNode.FirstChild.InnerText);
