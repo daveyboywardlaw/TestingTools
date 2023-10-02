@@ -8,7 +8,11 @@ using System.Xml;
 Dictionary<string, string> fileParameters = new Dictionary<string, string>();
 fileParameters = getParameters();
 var credentials = new VssBasicCredential(fileParameters["UserName"], fileParameters["PATToken"]);
+<<<<<<< HEAD
 var connection = new VssConnection(new Uri(fileParameters["OrgUrl"]), credentials);
+=======
+var connection = new VssConnection(new Uri("<Url goes here>"), credentials);
+>>>>>>> ff809c16b08ef971edf63f8f89e2268810a0e072
 
 using var projectClient = await connection.GetClientAsync<ProjectHttpClient>();
 using var buildClient = await connection.GetClientAsync<BuildHttpClient>();
