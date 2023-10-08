@@ -17,3 +17,21 @@ In the code it will run accessibilty tests on markdown.org, update some namespac
 ```var documentLinks = xDoc.XPathSelectElements("/sm:urlset/sm:url/sm:loc", nsMgr);```
 
 ```var baseOutputDirectory = @"C:\AccessibilityReport";```
+
+
+## Build Tools
+
+### What does it do?
+It looks at your last 10 DevOps builds and outputs the times that each test took as well as aggregating the time it takes on average for each test takes to run. This is outputted in 2 files, one called AggregatedIndividualTests.txt and one called IndividualTest.txt and these
+are oiutputted in a directory called C:\TEMP. 
+
+### Additional Information
+You can parameterise certain elements of the code and these are defined in the parameters.xml file. These elements are:
+
+* OrgURL - The organisation URL which contains the builds
+  
+* ProjectName - The name of the project under which the builds are run
+  
+* UserName - Username that can log in and view the builds
+
+* PATToken - PAT Token to give the program access
