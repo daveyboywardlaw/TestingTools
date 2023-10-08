@@ -22,8 +22,7 @@ In the code it will run accessibilty tests on markdown.org, update some namespac
 ## Build Tools
 
 ### What does it do?
-It looks at your last 10 DevOps builds and outputs the times that each test took as well as aggregating the time it takes on average for each test takes to run. This is outputted in 2 files, one called AggregatedIndividualTests.txt and one called IndividualTest.txt and these
-are oiutputted in a directory called C:\TEMP. 
+It looks at your last 10 DevOps builds and outputs the times that each test took as well as aggregating the time it takes on average for each test takes to run. This is outputted in 2 files, one called AggregatedIndividualTests.txt and one called IndividualTest.txt and these are outputted in a directory called C:\TEMP. 
 
 ### Additional Information
 You can parameterise certain elements of the code and these are defined in the parameters.xml file. These elements are:
